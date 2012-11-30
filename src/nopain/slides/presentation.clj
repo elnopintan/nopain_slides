@@ -1,7 +1,7 @@
 (ns nopain.slides.presentation
   (:use nopain.handler)
   (:use nopain.slides)
-  (:require [nopain.slides.data-en :as d]
+  (:require [nopain.slides.data :as d]
             [nopain.game :as g]
             [nopain.gui :as gui]
             [nopain.slides.par :as p]))
@@ -31,14 +31,14 @@
 (next-slide)
 
 ;Plan B
-(comment
+;(comment
 (doseq [p (range 0 100)]
 (g/register (str "Ladron " p)))
 
 (g/notify "A")
 (g/random-steal 5000)
 (insert-in-slides [:code "nopain.game/random-steal"])
-)
+;)
 
 (new-slide d/game-result)
 (doseq

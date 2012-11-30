@@ -20,10 +20,19 @@ keywords into JavaScript strings."
     :else x))
 
 
+(def slide (atom 0))
+
 
 (def p (.create (js/require "webpage")))
+
+(defn snapshot []
+  (.render p (str "slide" @slide ".png"))
+  (swap! slide inc))
+
+(set! (.-onCallback p) #(.setTimeout js/window snapshot 200))
+
 (.log js/console (str "Iniciando..." p))
-(set! (.-viewportSize p) (clj->js { "width" 800, "height"  2000 }))
+(set! (.-viewportSize p) (clj->js { "width" 1280, "height"  768 }))
 (.log js/console (.-width (.-viewportSize p)))
 (.open p "http://localhost:3000" 
        #(do
@@ -32,9 +41,6 @@ keywords into JavaScript strings."
 
           (do
             (.log js/console "exito")
-            (.setTimeout js/window 
-             (fn [] (.render p "prueba.pdf")(.render p "prueba.jpg")
-                    ;(.exit js/phantom)
-               )
-             20000)))))
+            ))))
+
 

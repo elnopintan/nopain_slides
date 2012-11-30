@@ -165,7 +165,10 @@
 		  [:code "nopain.game/news"]
           [:code "nopain.game/new-player"]
           [:code "nopain.game/add-player"]
-          [:code-snippet (str "players \n" (into {} (take 2 @nopain.game/players)) "") ]
+          [:code-snippet (apply str "players \n{" 
+                              (interpose "\n " (concat (map 
+                                                (fn [[a b]] (str "\"" a "\" " b ":"@b))
+                                                  (take 2 @nopain.game/players)) ["}"])))]
           [:code "nopain.game/steal-coins"]
           [:code "nopain.game/notify"]
           [:code "nopain.game/read-news"]]})

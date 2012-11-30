@@ -26,7 +26,8 @@
                    (em/at js/document ["#main"] (em/content (:html r)))
                    (if-let [ f (:run r)]
                      (ex/run f))
-                   (.highlight js/SyntaxHighlighter))))))
+                   (.highlight js/SyntaxHighlighter)
+                   (.callPhantom js/window ))))))
 
 
  
