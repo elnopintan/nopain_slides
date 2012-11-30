@@ -15,11 +15,18 @@
   :cljsbuild {
     :builds
       [
+              {:source-path "src/phantom/nopain"
+        :compiler {:output-to "resources/public/phantom.js"
+                   :optimizations :whitespace
+                   :externs ["resources/public/externs.js"]
+                   :pretty-print true
+                   }}
        {:source-path "src/cljs/nopain"
         :compiler {:output-to "resources/public/main.js"
                    :optimizations :advanced
                    :externs ["resources/public/externs.js"]
                    :pretty-print true
-                   }}]}
+                   }}
+]}
   :profiles
   {:dev {:dependencies [[ring-mock "0.1.3"]]}})
